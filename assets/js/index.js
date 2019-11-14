@@ -13,4 +13,18 @@
 
     });
 
-})(jQuery);    
+
+    var divs = $('div[id^="keylines-"]').hide(),
+        i = 0;
+
+    (function cycle() {
+
+        divs.eq(i).slideUp(400)
+            .delay(1000)
+            .slideUp(400, complete)
+
+        i = ++i % divs.length;
+
+    })();
+})(jQuery);
+
