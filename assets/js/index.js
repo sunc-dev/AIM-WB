@@ -13,15 +13,21 @@
 
     });
 
-
-    var divs = $('div[id^="keylines-"]').hide(),
+    var divs = $('div[id^="content-"]').hide(),
         i = 0;
+    var lastdiv = divs.last();
 
     (function cycle() {
 
-        divs.eq(i).slideUp(400)
+        divs.eq(i).fadeIn(400)
+            .css({ position: 'relative' })
+            .css({
+                transition: 'opacity 1s ease-in-out'
+            }
+            )
             .delay(1000)
-            .slideUp(400, complete)
+            .fadeOut(400, cycle)
+            .css({ "animation": "keylinesCycle 2s 1" });
 
         i = ++i % divs.length;
 
